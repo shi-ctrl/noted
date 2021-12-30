@@ -11,14 +11,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class TasksCopyWidget extends StatefulWidget {
-  const TasksCopyWidget({Key key}) : super(key: key);
+class TasksCopyCopyWidget extends StatefulWidget {
+  const TasksCopyCopyWidget({Key key}) : super(key: key);
 
   @override
-  _TasksCopyWidgetState createState() => _TasksCopyWidgetState();
+  _TasksCopyCopyWidgetState createState() => _TasksCopyCopyWidgetState();
 }
 
-class _TasksCopyWidgetState extends State<TasksCopyWidget> {
+class _TasksCopyCopyWidgetState extends State<TasksCopyCopyWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -90,14 +90,14 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                                       fit: BoxFit.contain,
                                     ),
                                     allowRotation: false,
-                                    tag: 'imageTag1',
+                                    tag: 'imageTag',
                                     useHeroAnimation: true,
                                   ),
                                 ),
                               );
                             },
                             child: Hero(
-                              tag: 'imageTag1',
+                              tag: 'imageTag',
                               transitionOnUserGestures: true,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0),
@@ -309,117 +309,6 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.25,
                       decoration: BoxDecoration(),
-                      child: StreamBuilder<List<TasksRecord>>(
-                        stream: queryTasksRecord(
-                          queryBuilder: (tasksRecord) => tasksRecord
-                              .where('tag', isEqualTo: 'doing')
-                              .orderBy('due'),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.primaryColor,
-                                ),
-                              ),
-                            );
-                          }
-                          List<TasksRecord> listViewTasksRecordList =
-                              snapshot.data;
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: listViewTasksRecordList.length,
-                            itemBuilder: (context, listViewIndex) {
-                              final listViewTasksRecord =
-                                  listViewTasksRecordList[listViewIndex];
-                              return InkWell(
-                                onTap: () async {
-                                  await showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    context: context,
-                                    builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.of(context).viewInsets,
-                                        child: NewTaskCopyWidget(),
-                                      );
-                                    },
-                                  );
-                                },
-                                child: ListTile(
-                                  title: Text(
-                                    listViewTasksRecord.name,
-                                    style: FlutterFlowTheme.title3.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.primaryColor,
-                                    ),
-                                  ),
-                                  subtitle: Text(
-                                    dateTimeFormat(
-                                        'MMMEd', listViewTasksRecord.due),
-                                    style: FlutterFlowTheme.subtitle2.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  trailing: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Color(0xFF303030),
-                                    size: 20,
-                                  ),
-                                  dense: false,
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        child: Text(
-                          'PLAN',
-                          style: FlutterFlowTheme.title1.override(
-                            fontFamily: 'Poppins',
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                        child: Icon(
-                          Icons.arrow_drop_down_circle_outlined,
-                          color: Colors.white,
-                          size: 24,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(200, 0, 0, 0),
-                        child: Image.asset(
-                          'assets/images/The-Eisenhower-Decision-Matrix.png',
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      decoration: BoxDecoration(),
                       child: GridView(
                         padding: EdgeInsets.zero,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -434,10 +323,7 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                             width: 100,
                             height: 75,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xFF2F9C1D),
-                                width: 3,
-                              ),
+                              color: Color(0xFFEEEEEE),
                             ),
                             child: StreamBuilder<List<TasksRecord>>(
                               stream: queryTasksRecord(
@@ -482,29 +368,31 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                                       ],
                                       child: ListTile(
                                         title: Text(
-                                          listViewTasksRecord.name,
+                                          'Lorem ipsum dolor...',
                                           style:
                                               FlutterFlowTheme.title3.override(
                                             fontFamily: 'Poppins',
-                                            color: Color(0xFF2F9C1D),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 10,
                                           ),
                                         ),
                                         subtitle: Text(
-                                          dateTimeFormat(
-                                              'MMMEd', listViewTasksRecord.due),
+                                          'Lorem ipsum dolor...',
                                           style: FlutterFlowTheme.subtitle2
                                               .override(
                                             fontFamily: 'Poppins',
-                                            color: Color(0xFF2F9C1D),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 8,
                                           ),
                                         ),
                                         trailing: Icon(
                                           Icons.arrow_forward_ios,
-                                          color: Color(0xFF2F9C1D),
+                                          color: FlutterFlowTheme.primaryColor,
                                           size: 20,
                                         ),
+                                        tileColor: Color(0xFFF5F5F5),
                                         dense: false,
                                       ),
                                     );
@@ -517,10 +405,7 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                             width: 100,
                             height: 100,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xFF229199),
-                                width: 3,
-                              ),
+                              color: Color(0xFFEEEEEE),
                             ),
                             child: StreamBuilder<List<TasksRecord>>(
                               stream: queryTasksRecord(
@@ -565,29 +450,31 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                                       ],
                                       child: ListTile(
                                         title: Text(
-                                          listViewTasksRecord.name,
+                                          'Lorem ipsum dolor...',
                                           style:
                                               FlutterFlowTheme.title3.override(
                                             fontFamily: 'Poppins',
-                                            color: Color(0xFF229199),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 10,
                                           ),
                                         ),
                                         subtitle: Text(
-                                          dateTimeFormat(
-                                              'MMMEd', listViewTasksRecord.due),
+                                          'Lorem ipsum dolor...',
                                           style: FlutterFlowTheme.subtitle2
                                               .override(
                                             fontFamily: 'Poppins',
-                                            color: Color(0xFF229199),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 8,
                                           ),
                                         ),
                                         trailing: Icon(
                                           Icons.arrow_forward_ios,
-                                          color: Color(0xFF229199),
+                                          color: FlutterFlowTheme.primaryColor,
                                           size: 20,
                                         ),
+                                        tileColor: Color(0xFFF5F5F5),
                                         dense: false,
                                       ),
                                     );
@@ -600,10 +487,7 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                             width: 100,
                             height: 100,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xFF9E0808),
-                                width: 3,
-                              ),
+                              color: Color(0xFFEEEEEE),
                             ),
                             child: StreamBuilder<List<TasksRecord>>(
                               stream: queryTasksRecord(
@@ -648,29 +532,31 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                                       ],
                                       child: ListTile(
                                         title: Text(
-                                          listViewTasksRecord.name,
+                                          'Lorem ipsum dolor...',
                                           style:
                                               FlutterFlowTheme.title3.override(
                                             fontFamily: 'Poppins',
-                                            color: Color(0xFF9E0808),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 10,
                                           ),
                                         ),
                                         subtitle: Text(
-                                          dateTimeFormat(
-                                              'MMMEd', listViewTasksRecord.due),
+                                          'Lorem ipsum dolor...',
                                           style: FlutterFlowTheme.subtitle2
                                               .override(
                                             fontFamily: 'Poppins',
-                                            color: Color(0xFF9E0808),
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 8,
                                           ),
                                         ),
                                         trailing: Icon(
                                           Icons.arrow_forward_ios,
-                                          color: Color(0xFF9E0808),
+                                          color: Color(0xFF303030),
                                           size: 20,
                                         ),
+                                        tileColor: Color(0xFFF5F5F5),
                                         dense: false,
                                       ),
                                     );
@@ -683,10 +569,7 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                             width: 100,
                             height: 100,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: FlutterFlowTheme.tertiaryColor,
-                                width: 3,
-                              ),
+                              color: Color(0xFFEEEEEE),
                             ),
                             child: StreamBuilder<List<TasksRecord>>(
                               stream: queryTasksRecord(
@@ -731,31 +614,31 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                                       ],
                                       child: ListTile(
                                         title: Text(
-                                          listViewTasksRecord.name,
+                                          'Lorem ipsum dolor...',
                                           style:
                                               FlutterFlowTheme.title3.override(
                                             fontFamily: 'Poppins',
                                             color:
-                                                FlutterFlowTheme.tertiaryColor,
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 10,
                                           ),
                                         ),
                                         subtitle: Text(
-                                          dateTimeFormat(
-                                              'MMMEd', listViewTasksRecord.due),
+                                          'Lorem ipsum dolor...',
                                           style: FlutterFlowTheme.subtitle2
                                               .override(
                                             fontFamily: 'Poppins',
                                             color:
-                                                FlutterFlowTheme.tertiaryColor,
+                                                FlutterFlowTheme.primaryColor,
                                             fontSize: 8,
                                           ),
                                         ),
                                         trailing: Icon(
                                           Icons.arrow_forward_ios,
-                                          color: FlutterFlowTheme.tertiaryColor,
+                                          color: Color(0xFF303030),
                                           size: 20,
                                         ),
+                                        tileColor: Color(0xFFF5F5F5),
                                         dense: false,
                                       ),
                                     );
@@ -767,6 +650,145 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                         ],
                       ),
                     ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                        child: Text(
+                          'PLAN',
+                          style: FlutterFlowTheme.title1.override(
+                            fontFamily: 'Poppins',
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                        child: Icon(
+                          Icons.arrow_drop_down_circle_outlined,
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      decoration: BoxDecoration(),
+                      child: StreamBuilder<List<TasksRecord>>(
+                        stream: queryTasksRecord(
+                          queryBuilder: (tasksRecord) => tasksRecord
+                              .where('tag', isEqualTo: 'do')
+                              .where('tag', isEqualTo: 'doing')
+                              .where('tag', isEqualTo: 'defer')
+                              .where('tag', isEqualTo: 'delegate'),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  color: FlutterFlowTheme.primaryColor,
+                                ),
+                              ),
+                            );
+                          }
+                          List<TasksRecord> listViewTasksRecordList =
+                              snapshot.data;
+                          return ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listViewTasksRecordList.length,
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewTasksRecord =
+                                  listViewTasksRecordList[listViewIndex];
+                              return InkWell(
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: NewTaskCopyWidget(),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Slidable(
+                                  actionPane: const SlidableScrollActionPane(),
+                                  secondaryActions: [
+                                    IconSlideAction(
+                                      caption: 'Share',
+                                      color: Colors.blue,
+                                      icon: Icons.share,
+                                      onTap: () {
+                                        print(
+                                            'SlidableActionWidget pressed ...');
+                                      },
+                                    ),
+                                  ],
+                                  child: ListTile(
+                                    title: Text(
+                                      listViewTasksRecord.name,
+                                      style: FlutterFlowTheme.title3.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.primaryColor,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      dateTimeFormat(
+                                          'MMMEd', listViewTasksRecord.due),
+                                      style:
+                                          FlutterFlowTheme.subtitle2.override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    trailing: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Color(0xFF303030),
+                                      size: 20,
+                                    ),
+                                    dense: false,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: Color(0xFFEEEEEE),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [],
                   ),
                 ],
               ),
