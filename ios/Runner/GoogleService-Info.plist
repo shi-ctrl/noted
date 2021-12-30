@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>94311026372-943q6p86o9tium8u71mhm1gf83a5cuec.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.94311026372-943q6p86o9tium8u71mhm1gf83a5cuec</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>94311026372-8s8hfactqjq1p5hq3a8hilt85t2f4l94.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDPCBUwkL41N9mVX7A7kckts0QQdY9GztA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>94311026372</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.noted</string>
+	<key>PROJECT_ID</key>
+	<string>noted-db1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>noted-db1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:94311026372:ios:243d67dfc4918e6fd6c391</string>
+	<key>DATABASE_URL</key>
+	<string>https://noted-db1-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
