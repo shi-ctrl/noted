@@ -263,7 +263,7 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                                         'MMMEd', listViewTasksRecord.due),
                                     style: FlutterFlowTheme.subtitle2.override(
                                       fontFamily: 'Poppins',
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.primaryColor,
                                     ),
                                   ),
                                   trailing: Icon(
@@ -365,7 +365,7 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                                         'MMMEd', listViewTasksRecord.due),
                                     style: FlutterFlowTheme.subtitle2.override(
                                       fontFamily: 'Poppins',
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.primaryColor,
                                     ),
                                   ),
                                   trailing: Icon(

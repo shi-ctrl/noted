@@ -272,7 +272,8 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                                 'defer',
                                 'doing',
                                 'done',
-                                'archived'
+                                'archived',
+                                'today'
                               ].toList(),
                               onChanged: (val) =>
                                   setState(() => dropDownTagValue = val),

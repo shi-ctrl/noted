@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../tasks_copy/tasks_copy_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -334,7 +333,8 @@ class _NewTaskCopyWidgetState extends State<NewTaskCopyWidget> {
                                     'defer',
                                     'doing',
                                     'done',
-                                    'archived'
+                                    'archived',
+                                    'today'
                                   ].toList(),
                                   onChanged: (val) =>
                                       setState(() => dropDownTagValue = val),
@@ -406,6 +406,7 @@ class _NewTaskCopyWidgetState extends State<NewTaskCopyWidget> {
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   await columnTasksRecord.reference.delete();
+                                  Navigator.pop(context);
                                 },
                                 text: 'Delete',
                                 icon: Icon(
@@ -444,16 +445,7 @@ class _NewTaskCopyWidgetState extends State<NewTaskCopyWidget> {
                                   );
                                   await columnTasksRecord.reference
                                       .update(tasksUpdateData);
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 300),
-                                      reverseDuration:
-                                          Duration(milliseconds: 300),
-                                      child: TasksCopyWidget(),
-                                    ),
-                                  );
+                                  Navigator.pop(context);
                                 },
                                 text: 'Save',
                                 options: FFButtonOptions(
