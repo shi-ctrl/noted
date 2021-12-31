@@ -209,9 +209,8 @@ class _TasksCopyWidgetState extends State<TasksCopyWidget> {
                       decoration: BoxDecoration(),
                       child: StreamBuilder<List<TasksRecord>>(
                         stream: queryTasksRecord(
-                          queryBuilder: (tasksRecord) => tasksRecord
-                              .where('due', isLessThan: getCurrentTimestamp)
-                              .where('due', isGreaterThan: getCurrentTimestamp),
+                          queryBuilder: (tasksRecord) =>
+                              tasksRecord.where('tag', isEqualTo: 'today'),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
