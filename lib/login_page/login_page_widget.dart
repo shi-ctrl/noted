@@ -4,7 +4,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../forgot_password/forgot_password_widget.dart';
 import '../sign_up/sign_up_widget.dart';
-import '../tasks/tasks_widget.dart';
+import '../tasks_copy/tasks_copy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -273,7 +273,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     duration: Duration(milliseconds: 300),
                                     reverseDuration:
                                         Duration(milliseconds: 300),
-                                    child: TasksWidget(),
+                                    child: TasksCopyWidget(),
                                   ),
                                 );
                               },

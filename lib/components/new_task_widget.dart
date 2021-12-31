@@ -5,8 +5,9 @@ import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../tasks/tasks_widget.dart';
+import '../tasks_copy/tasks_copy_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,12 +20,13 @@ class NewTaskWidget extends StatefulWidget {
 }
 
 class _NewTaskWidgetState extends State<NewTaskWidget> {
-  DateTime datePicked;
+  DateTime datePicked1;
   TextEditingController taskDueController;
+  DateTime datePicked2;
   TextEditingController taskNameController;
   String dropDownCategoryValue;
   String dropDownTagValue;
-  String radioButtonValue;
+  String prioritySetValue;
 
   @override
   void initState() {
@@ -131,12 +133,17 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                             child: TextFormField(
+                              onChanged: (_) => EasyDebounce.debounce(
+                                'taskDueController',
+                                Duration(milliseconds: 2000),
+                                () => setState(() {}),
+                              ),
                               onFieldSubmitted: (_) async {
                                 await DatePicker.showDatePicker(
                                   context,
                                   showTitleActions: true,
                                   onConfirm: (date) {
-                                    setState(() => datePicked = date);
+                                    setState(() => datePicked1 = date);
                                   },
                                   currentTime: getCurrentTimestamp,
                                   minTime: getCurrentTimestamp,
@@ -145,7 +152,12 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                               controller: taskDueController,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Due Date',
+                                labelText: 'Due Date',
+                                labelStyle: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                  color: FlutterFlowTheme.primaryColor,
+                                ),
+                                hintText: dateTimeFormat('yMMMd', datePicked2),
                                 hintStyle: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Poppins',
                                   color: FlutterFlowTheme.primaryColor,
@@ -176,6 +188,24 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                                 color: FlutterFlowTheme.primaryColor,
                               ),
                             ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            await DatePicker.showDatePicker(
+                              context,
+                              showTitleActions: true,
+                              onConfirm: (date) {
+                                setState(() => datePicked2 = date);
+                              },
+                              currentTime: getCurrentTimestamp,
+                              minTime: getCurrentTimestamp,
+                            );
+                          },
+                          child: Icon(
+                            Icons.date_range,
+                            color: FlutterFlowTheme.primaryColor,
+                            size: 24,
                           ),
                         ),
                       ],
@@ -242,7 +272,8 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                                 'defer',
                                 'doing',
                                 'done',
-                                'archived'
+                                'archived',
+                                'today'
                               ].toList(),
                               onChanged: (val) =>
                                   setState(() => dropDownTagValue = val),
@@ -283,7 +314,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                             child: FlutterFlowRadioButton(
                               options: ['High', 'Medium', 'Low'],
                               onChanged: (value) {
-                                setState(() => radioButtonValue = value);
+                                setState(() => prioritySetValue = value);
                               },
                               optionHeight: 25,
                               textStyle: FlutterFlowTheme.bodyText1.override(
@@ -335,12 +366,15 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                             onPressed: () async {
                               final tasksCreateData = createTasksRecordData(
                                 created: getCurrentTimestamp,
-                                due: datePicked,
-                                name: taskNameController.text,
-                                priority: radioButtonValue,
-                                userId: currentUserUid,
+                                due: datePicked2,
+                                name: valueOrDefault<String>(
+                                  taskNameController.text,
+                                  'New Task',
+                                ),
+                                priority: prioritySetValue,
                                 tag: dropDownTagValue,
                                 category: dropDownCategoryValue,
+                                userId: currentUserUid,
                               );
                               await TasksRecord.collection
                                   .doc()
@@ -351,7 +385,7 @@ class _NewTaskWidgetState extends State<NewTaskWidget> {
                                   type: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 300),
                                   reverseDuration: Duration(milliseconds: 300),
-                                  child: TasksWidget(),
+                                  child: TasksCopyWidget(),
                                 ),
                               );
                             },
